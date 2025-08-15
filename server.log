@@ -1,0 +1,513 @@
+
+> vibecheck@0.1.0 dev
+> next dev --turbopack
+
+ ⚠ Port 3000 is in use by process 1485
+52532, using available port 3003 instead.
+   ▲ Next.js 15.4.6 (Turbopack)
+   - Local:        http://localhost:3003
+   - Network:      http://10.0.28.210:3003
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 703ms
+ ○ Compiling /api/generate ...
+ ✓ Compiled /api/generate in 555ms
+(node:58574) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Error: Route "/api/generate" used `headers().get('x-forwarded-for')`. `headers()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at POST (app/api/generate/route.ts:16:18)
+  14 |     const headersList = headers();
+  15 |     const ip =
+> 16 |       headersList.get("x-forwarded-for") ||
+     |                  ^
+  17 |       headersList.get("x-real-ip") ||
+  18 |       "unknown";
+  19 |
+Redis not available, continuing without rate limiting: Error [UrlError]: Upstash Redis client was passed an invalid URL. You should pass a URL starting with https. Received: "https://...". 
+    at [project]/lib/redis.ts [app-route] (ecmascript) (lib/redis.ts:4:21)
+    at <unknown> (.next/server/chunks/_5fd24366._.js:18:16)
+    at async POST (app/api/generate/route.ts:23:24)
+  2 | import { env } from "./env";
+  3 |
+> 4 | export const redis = new Redis({
+    |                     ^
+  5 |   url: env.UPSTASH_REDIS_REST_URL,
+  6 |   token: env.UPSTASH_REDIS_REST_TOKEN,
+  7 | });
+Starting generation for prompt: test store
+Generating store spec for prompt: test store
+OpenAI response content: {
+  "name": "Test Store",
+  "description": "Curated Collection of Trendy Gifts for Everyone",
+  "hero": {
+    "title": "Discover the Perfect Gift!",
+    "subtitle": "Find unique and unforgettable presents for your loved ones.",
+    "imageUrl": "https://placeholder.com/image.jpg"
+  },
+  "products": [
+    {
+      "name": "Eco-friendly Water Bottle",
+      "description": "Sustainable, leak-proof, and perfect for everyday use. Keeps your drink hot or cold for hours.",
+      "price": 2500,
+      "imagePrompt": "eco-friendly water bottle"
+    },
+    {
+      "name": "Wireless Earbuds",
+      "description": "Experience superior sound quality and true wireless freedom with our top-rated earbuds.",
+      "price": 5500,
+      "imagePrompt": "wireless earbuds"
+    },
+    {
+      "name": "Artisanal Candle Set",
+      "description": "Hand-poured and scented with natural oils, these candles bring warmth and comfort to any space.",
+      "price": 3200,
+      "imagePrompt": "artisanal candle set"
+    },
+    {
+      "name": "Smart Fitness Tracker",
+      "description": "Monitor your health and activity levels with ease. Waterproof, durable, and stylish.",
+      "price": 8900,
+      "imagePrompt": "smart fitness tracker"
+    },
+    {
+      "name": "Luxury Silk Scarf",
+      "description": "Add a touch of elegance to any outfit with our exquisitely crafted silk scarves.",
+      "price": 4700,
+      "imagePrompt": "luxury silk scarf"
+    }
+  ],
+  "theme": {
+    "primaryColor": "#FF6B6B",
+    "fontFamily": "poppins",
+    "style": "minimal"
+  },
+  "faq": [
+    {
+      "question": "How long does shipping take?",
+      "answer": "Shipping times vary by location but typically take between 3-5 business days."
+    },
+    {
+      "question": "Do you offer international shipping?",
+      "answer": "Yes, we ship internationally. Additional fees and longer shipping times apply."
+    },
+    {
+      "question": "What is your return policy?",
+      "answer": "We accept returns within 30 days of purchase, provided the items are in original condition."
+    },
+    {
+      "question": "Can I track my order?",
+      "answer": "Yes, you'll receive a tracking number once your order has shipped."
+    },
+    {
+      "question": "Are your products eco-friendly?",
+      "answer": "We prioritize sustainability, offering a range of eco-friendly products."
+    }
+  ]
+}
+Parsed store spec: {
+  name: 'Test Store',
+  description: 'Curated Collection of Trendy Gifts for Everyone',
+  hero: {
+    title: 'Discover the Perfect Gift!',
+    subtitle: 'Find unique and unforgettable presents for your loved ones.',
+    imageUrl: 'https://placeholder.com/image.jpg'
+  },
+  products: [
+    {
+      name: 'Eco-friendly Water Bottle',
+      description: 'Sustainable, leak-proof, and perfect for everyday use. Keeps your drink hot or cold for hours.',
+      price: 2500,
+      imagePrompt: 'eco-friendly water bottle'
+    },
+    {
+      name: 'Wireless Earbuds',
+      description: 'Experience superior sound quality and true wireless freedom with our top-rated earbuds.',
+      price: 5500,
+      imagePrompt: 'wireless earbuds'
+    },
+    {
+      name: 'Artisanal Candle Set',
+      description: 'Hand-poured and scented with natural oils, these candles bring warmth and comfort to any space.',
+      price: 3200,
+      imagePrompt: 'artisanal candle set'
+    },
+    {
+      name: 'Smart Fitness Tracker',
+      description: 'Monitor your health and activity levels with ease. Waterproof, durable, and stylish.',
+      price: 8900,
+      imagePrompt: 'smart fitness tracker'
+    },
+    {
+      name: 'Luxury Silk Scarf',
+      description: 'Add a touch of elegance to any outfit with our exquisitely crafted silk scarves.',
+      price: 4700,
+      imagePrompt: 'luxury silk scarf'
+    }
+  ],
+  theme: { primaryColor: '#FF6B6B', fontFamily: 'poppins', style: 'minimal' },
+  faq: [
+    {
+      question: 'How long does shipping take?',
+      answer: 'Shipping times vary by location but typically take between 3-5 business days.'
+    },
+    {
+      question: 'Do you offer international shipping?',
+      answer: 'Yes, we ship internationally. Additional fees and longer shipping times apply.'
+    },
+    {
+      question: 'What is your return policy?',
+      answer: 'We accept returns within 30 days of purchase, provided the items are in original condition.'
+    },
+    {
+      question: 'Can I track my order?',
+      answer: "Yes, you'll receive a tracking number once your order has shipped."
+    },
+    {
+      question: 'Are your products eco-friendly?',
+      answer: 'We prioritize sustainability, offering a range of eco-friendly products.'
+    }
+  ]
+}
+Generating product image for prompt: test store hero image, lifestyle shot
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-xZU9dFfGA79jFAxnhozqa7Rv/user-0yG94pAipiK5EPEo3U1SyyvC/img-9Nv4OyKfCHvNdftOQtdAQT3Z.png?st=2025-08-15T01%3A46%3A32Z&se=2025-08-15T03%3A46%3A32Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=8eb2c87c-0531-4dab-acb3-b5e2adddce6c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-14T04%3A00%3A47Z&ske=2025-08-15T04%3A00%3A47Z&sks=b&skv=2024-08-04&sig=CZWUCLOXA/SqJ95yF006ak80E8r75YNU1WlCcaIKXdw%3D
+Generation error: {
+  code: 'PGRST205',
+  details: null,
+  hint: null,
+  message: "Could not find the table 'public.stores' in the schema cache"
+}
+Error stack: undefined
+ POST /api/generate 500 in 36523ms
+ ○ Compiling / ...
+ ✓ Compiled / in 911ms
+ GET / 200 in 1009ms
+Error: Route "/api/generate" used `headers().get('x-forwarded-for')`. `headers()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at POST (app/api/generate/route.ts:16:18)
+  14 |     const headersList = headers();
+  15 |     const ip =
+> 16 |       headersList.get("x-forwarded-for") ||
+     |                  ^
+  17 |       headersList.get("x-real-ip") ||
+  18 |       "unknown";
+  19 |
+Redis not available, continuing without rate limiting: Error [UrlError]: Upstash Redis client was passed an invalid URL. You should pass a URL starting with https. Received: "https://...". 
+    at [project]/lib/redis.ts [app-route] (ecmascript) (lib/redis.ts:4:21)
+    at <unknown> (.next/server/chunks/_5fd24366._.js:18:16)
+    at async POST (app/api/generate/route.ts:23:24)
+  2 | import { env } from "./env";
+  3 |
+> 4 | export const redis = new Redis({
+    |                     ^
+  5 |   url: env.UPSTASH_REDIS_REST_URL,
+  6 |   token: env.UPSTASH_REDIS_REST_TOKEN,
+  7 | });
+Starting generation for prompt: christmas tshirt
+Generating store spec for prompt: christmas tshirt
+OpenAI response content: {
+  "name": "Festive Tee Wonderland",
+  "description": "Your one-stop-shop for cozy, cheerful Christmas t-shirts!",
+  "hero": {
+    "title": "Festive Tees Await!",
+    "subtitle": "Bring joy to your wardrobe with our exclusive Christmas t-shirts.",
+    "imageUrl": "https://placeholder.com/image.jpg"
+  },
+  "products": [
+    {
+      "name": "Snowy Night Tee",
+      "description": "Get wrapped up in the magic of the season with this soft, snowy night-themed t-shirt.",
+      "price": 2500,
+      "imagePrompt": "snowy night Christmas t-shirt"
+    },
+    {
+      "name": "Reindeer Games Tee",
+      "description": "Light up your holiday spirit with our reindeer games t-shirt, perfect for family gatherings.",
+      "price": 2700,
+      "imagePrompt": "reindeer on Christmas t-shirt"
+    },
+    {
+      "name": "Merry & Bright Tee",
+      "description": "Shine bright this holiday season with our Merry & Bright t-shirt, featuring dazzling Christmas lights.",
+      "price": 2900,
+      "imagePrompt": "Christmas lights on t-shirt"
+    },
+    {
+      "name": "Elf Squad Tee",
+      "description": "Join the festive fun with our Elf Squad t-shirt, for those who love the hustle and bustle of the holiday.",
+      "price": 3000,
+      "imagePrompt": "Elf themed Christmas t-shirt"
+    }
+  ],
+  "theme": {
+    "primaryColor": "#FF6B6B",
+    "fontFamily": "poppins",
+    "style": "bold"
+  },
+  "faq": [
+    {
+      "question": "What sizes are available?",
+      "answer": "Our Christmas t-shirts come in sizes S to XXL, catering to all our festive friends."
+    },
+    {
+      "question": "How do I wash my festive tee?",
+      "answer": "Wash your tee on a gentle cycle with like colors, and tumble dry on low to keep it merry and bright."
+    },
+    {
+      "question": "Can I return my t-shirt if it doesn’t fit?",
+      "answer": "Yes, unworn t-shirts can be returned within 30 days of purchase. Please see our return policy for details."
+    },
+    {
+      "question": "Do you ship internationally?",
+      "answer": "Yes, we spread holiday cheer worldwide! International shipping rates and times apply."
+    },
+    {
+      "question": "Are these t-shirts unisex?",
+      "answer": "Yes, our Christmas t-shirts are designed to be enjoyed by everyone. Check our size guide for the perfect fit."
+    }
+  ]
+}
+Parsed store spec: {
+  name: 'Festive Tee Wonderland',
+  description: 'Your one-stop-shop for cozy, cheerful Christmas t-shirts!',
+  hero: {
+    title: 'Festive Tees Await!',
+    subtitle: 'Bring joy to your wardrobe with our exclusive Christmas t-shirts.',
+    imageUrl: 'https://placeholder.com/image.jpg'
+  },
+  products: [
+    {
+      name: 'Snowy Night Tee',
+      description: 'Get wrapped up in the magic of the season with this soft, snowy night-themed t-shirt.',
+      price: 2500,
+      imagePrompt: 'snowy night Christmas t-shirt'
+    },
+    {
+      name: 'Reindeer Games Tee',
+      description: 'Light up your holiday spirit with our reindeer games t-shirt, perfect for family gatherings.',
+      price: 2700,
+      imagePrompt: 'reindeer on Christmas t-shirt'
+    },
+    {
+      name: 'Merry & Bright Tee',
+      description: 'Shine bright this holiday season with our Merry & Bright t-shirt, featuring dazzling Christmas lights.',
+      price: 2900,
+      imagePrompt: 'Christmas lights on t-shirt'
+    },
+    {
+      name: 'Elf Squad Tee',
+      description: 'Join the festive fun with our Elf Squad t-shirt, for those who love the hustle and bustle of the holiday.',
+      price: 3000,
+      imagePrompt: 'Elf themed Christmas t-shirt'
+    }
+  ],
+  theme: { primaryColor: '#FF6B6B', fontFamily: 'poppins', style: 'bold' },
+  faq: [
+    {
+      question: 'What sizes are available?',
+      answer: 'Our Christmas t-shirts come in sizes S to XXL, catering to all our festive friends.'
+    },
+    {
+      question: 'How do I wash my festive tee?',
+      answer: 'Wash your tee on a gentle cycle with like colors, and tumble dry on low to keep it merry and bright.'
+    },
+    {
+      question: 'Can I return my t-shirt if it doesn’t fit?',
+      answer: 'Yes, unworn t-shirts can be returned within 30 days of purchase. Please see our return policy for details.'
+    },
+    {
+      question: 'Do you ship internationally?',
+      answer: 'Yes, we spread holiday cheer worldwide! International shipping rates and times apply.'
+    },
+    {
+      question: 'Are these t-shirts unisex?',
+      answer: 'Yes, our Christmas t-shirts are designed to be enjoyed by everyone. Check our size guide for the perfect fit.'
+    }
+  ]
+}
+Generating product image for prompt: christmas tshirt hero image, lifestyle shot
+Generated image URL: https://oaidalleapiprodscus.blob.core.windows.net/private/org-xZU9dFfGA79jFAxnhozqa7Rv/user-0yG94pAipiK5EPEo3U1SyyvC/img-XTT7eiPJWib66pPFhEuXJ43e.png?st=2025-08-15T01%3A47%3A51Z&se=2025-08-15T03%3A47%3A51Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=38e27a3b-6174-4d3e-90ac-d7d9ad49543f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-14T08%3A41%3A19Z&ske=2025-08-15T08%3A41%3A19Z&sks=b&skv=2024-08-04&sig=slLG2eF1xN7Ir9rTJIo%2BTxwdJAdIF35CSuqvzLBBPbI%3D
+Generation error: {
+  code: 'PGRST205',
+  details: null,
+  hint: null,
+  message: "Could not find the table 'public.stores' in the schema cache"
+}
+Error stack: undefined
+ POST /api/generate 500 in 38622ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6 (Turbopack)
+   - Local:        http://localhost:3003
+   - Network:      http://10.0.28.210:3003
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · serverComponentsExternalPackages
+
+ ✓ Starting...
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.ts file accordingly.
+ ✓ Ready in 793ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6 (Turbopack)
+   - Local:        http://localhost:3003
+   - Network:      http://10.0.28.210:3003
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · serverComponentsExternalPackages
+
+ ✓ Starting...
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.ts file accordingly.
+ ✓ Ready in 685ms
+ ○ Compiling /api/generate ...
+ ✓ Compiled /api/generate in 604ms
+[ph68b] Starting generation request at 2025-08-15T03:36:01.161Z
+[ph68b] Parsing request body...
+(node:59617) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[ph68b] Request parsed. Prompt: "christmas tshirt", allowIp: false
+[ph68b] Getting client IP...
+Error: Route "/api/generate" used `headers().get('x-forwarded-for')`. `headers()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at POST (app/api/generate/route.ts:29:18)
+  27 |     const headersList = headers();
+  28 |     const ip =
+> 29 |       headersList.get("x-forwarded-for") ||
+     |                  ^
+  30 |       headersList.get("x-real-ip") ||
+  31 |       "unknown";
+  32 |     console.log(`[${requestId}] Client IP: ${ip}`);
+[ph68b] Client IP: ::1
+[ph68b] Checking Redis availability...
+[ph68b] Redis not available, continuing without rate limiting: Error [UrlError]: Upstash Redis client was passed an invalid URL. You should pass a URL starting with https. Received: "https://...". 
+    at [project]/lib/redis.ts [app-route] (ecmascript) (lib/redis.ts:4:21)
+    at <unknown> (.next/server/chunks/_5fd24366._.js:18:16)
+    at async POST (app/api/generate/route.ts:39:24)
+  2 | import { env } from "./env";
+  3 |
+> 4 | export const redis = new Redis({
+    |                     ^
+  5 |   url: env.UPSTASH_REDIS_REST_URL,
+  6 |   token: env.UPSTASH_REDIS_REST_TOKEN,
+  7 | });
+[ph68b] Starting generation for prompt: "christmas tshirt"
+[ph68b] Starting orchestrator with prompt: "christmas tshirt"
+[ph68b] Step 1: Starting content moderation...
+[Moderation] Starting moderation for prompt: "christmas tshirt", allowIp: false
+[Moderation] Checking for blocked terms...
+[Moderation] No blocked terms found
+[Moderation] Calling OpenAI moderation API...
+[Moderation] OpenAI moderation completed in 549ms
+[Moderation] Content approved by OpenAI
+[Moderation] Total moderation time: 549ms
+[ph68b] Content moderation completed in 549ms, allowed: true
+[ph68b] Step 2: Starting store spec generation...
+[OpenAI] Starting store spec generation for prompt: "christmas tshirt"
+[OpenAI] Calling GPT-4 for store spec generation...
+ POST /api/generate 200 in 10055ms
+[OpenAI] GPT-4 API call completed in 19155ms
+[OpenAI] Received response content (2704 chars)
+[OpenAI] Parsing JSON response...
+[OpenAI] JSON parsing completed in 0ms
+[OpenAI] Store spec generated successfully: {
+  name: 'Festive Threads Pop-Up',
+  productsCount: 5,
+  faqCount: 5,
+  theme: { primaryColor: '#FF6B6B', fontFamily: 'poppins', style: 'bold' }
+}
+[OpenAI] Store spec generation total time: 19158ms
+[ph68b] Store spec generation completed in 19158ms
+[ph68b] Validating store spec with schema...
+[ph68b] Store spec validation completed in 2ms
+[ph68b] Step 3: Starting hero image generation...
+[OpenAI] Starting image generation for prompt: "christmas tshirt hero image, lifestyle shot"
+[OpenAI] Calling DALL-E 3 for image generation...
+[OpenAI] Full DALL-E prompt: "Professional product photo: christmas tshirt hero image, lifestyle shot, clean white background, high quality, commercial photography, well-lit, centered, 1024x1024"
+[OpenAI] DALL-E 3 API call completed in 19637ms
+[OpenAI] Generated image URL: received
+[OpenAI] Image generation total time: 19637ms
+[ph68b] Hero image generation completed in 19637ms
+[ph68b] Step 4: Creating store record...
+[ph68b] Generated slug: 9Ff1dfLh
+[ph68b] Inserting store record into database...
+[ph68b] Store record creation completed in 1030ms, ID: 358cfcad-3c1b-422d-aba1-ea2479f99632
+[ph68b] Step 5: Generating and creating 5 products...
+[ph68b] Processing product 1/5: "Merry & Bright Tee"
+[ph68b] Generating image for product "Merry & Bright Tee"...
+[OpenAI] Starting image generation for prompt: "christmas lights tshirt"
+[OpenAI] Calling DALL-E 3 for image generation...
+[OpenAI] Full DALL-E prompt: "Professional product photo: christmas lights tshirt, clean white background, high quality, commercial photography, well-lit, centered, 1024x1024"
+[OpenAI] DALL-E 3 API call completed in 21425ms
+[OpenAI] Generated image URL: received
+[OpenAI] Image generation total time: 21425ms
+[ph68b] Product image generation completed in 21425ms for "Merry & Bright Tee"
+[ph68b] Inserting product "Merry & Bright Tee" into database...
+[ph68b] Product "Merry & Bright Tee" insertion completed in 111ms, ID: 053ad491-ba96-46cb-be86-cfc5220c8dda
+[ph68b] Processing product 2/5: "Santa's Favorite"
+[ph68b] Generating image for product "Santa's Favorite"...
+[OpenAI] Starting image generation for prompt: "santa favorite tshirt"
+[OpenAI] Calling DALL-E 3 for image generation...
+[OpenAI] Full DALL-E prompt: "Professional product photo: santa favorite tshirt, clean white background, high quality, commercial photography, well-lit, centered, 1024x1024"
+[OpenAI] DALL-E 3 API call completed in 17627ms
+[OpenAI] Generated image URL: received
+[OpenAI] Image generation total time: 17627ms
+[ph68b] Product image generation completed in 17627ms for "Santa's Favorite"
+[ph68b] Inserting product "Santa's Favorite" into database...
+[ph68b] Product "Santa's Favorite" insertion completed in 149ms, ID: 52651d36-f82e-40c1-a837-28123fd96de0
+[ph68b] Processing product 3/5: "Elf Squad Tee"
+[ph68b] Generating image for product "Elf Squad Tee"...
+[OpenAI] Starting image generation for prompt: "elf squad christmas tshirt"
+[OpenAI] Calling DALL-E 3 for image generation...
+[OpenAI] Full DALL-E prompt: "Professional product photo: elf squad christmas tshirt, clean white background, high quality, commercial photography, well-lit, centered, 1024x1024"
+[OpenAI] DALL-E 3 API call completed in 18609ms
+[OpenAI] Generated image URL: received
+[OpenAI] Image generation total time: 18609ms
+[ph68b] Product image generation completed in 18609ms for "Elf Squad Tee"
+[ph68b] Inserting product "Elf Squad Tee" into database...
+[ph68b] Product "Elf Squad Tee" insertion completed in 120ms, ID: 40c3d231-0b45-4670-90a4-1f78a70a118a
+[ph68b] Processing product 4/5: "Cozy Winter Tee"
+[ph68b] Generating image for product "Cozy Winter Tee"...
+[OpenAI] Starting image generation for prompt: "snowflake christmas tshirt"
+[OpenAI] Calling DALL-E 3 for image generation...
+[OpenAI] Full DALL-E prompt: "Professional product photo: snowflake christmas tshirt, clean white background, high quality, commercial photography, well-lit, centered, 1024x1024"
+[OpenAI] DALL-E 3 API call completed in 16796ms
+[OpenAI] Generated image URL: received
+[OpenAI] Image generation total time: 16796ms
+[ph68b] Product image generation completed in 16796ms for "Cozy Winter Tee"
+[ph68b] Inserting product "Cozy Winter Tee" into database...
+[ph68b] Product "Cozy Winter Tee" insertion completed in 129ms, ID: 59b55bba-b3bf-42f0-a028-746b00a13a42
+[ph68b] Processing product 5/5: "Reindeer Games Tee"
+[ph68b] Generating image for product "Reindeer Games Tee"...
+[OpenAI] Starting image generation for prompt: "reindeer christmas tshirt"
+[OpenAI] Calling DALL-E 3 for image generation...
+[OpenAI] Full DALL-E prompt: "Professional product photo: reindeer christmas tshirt, clean white background, high quality, commercial photography, well-lit, centered, 1024x1024"
+[OpenAI] DALL-E 3 API call completed in 15645ms
+[OpenAI] Generated image URL: received
+[OpenAI] Image generation total time: 15645ms
+[ph68b] Product image generation completed in 15646ms for "Reindeer Games Tee"
+[ph68b] Inserting product "Reindeer Games Tee" into database...
+[ph68b] Product "Reindeer Games Tee" insertion completed in 143ms, ID: aff763b3-1f6e-4686-bc91-fadc20cd06ba
+[ph68b] All products completed in 90756ms, created 5 products
+[ph68b] Step 6: Updating store layout with product IDs...
+[ph68b] Layout update completed in 89ms
+[ph68b] Step 7: Logging generation record...
+[ph68b] Generation logging completed in 110ms
+[ph68b] Orchestrator completed successfully in 131331ms total
+[ph68b] Generation completed successfully in 131331ms: { storeId: '358cfcad-3c1b-422d-aba1-ea2479f99632', slug: '9Ff1dfLh' }
+[ph68b] Request completed successfully in 131433ms total
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.4.6 (Turbopack)
+   - Local:        http://localhost:3003
+   - Network:      http://10.0.28.210:3003
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · serverComponentsExternalPackages
+
+ ✓ Starting...
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.ts file accordingly.
+ ✓ Ready in 909ms
