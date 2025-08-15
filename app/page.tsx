@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,6 +21,8 @@ export default function HomePage() {
     storeId: string;
     slug: string;
   } | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [status, setStatus] = useState("");
 
   const handleGenerate = async () => {
     if (!prompt.trim()) return;
@@ -28,6 +30,8 @@ export default function HomePage() {
     setLoading(true);
     setError("");
     setResult(null);
+    setProgress(0);
+    setStatus("Getting ready...");
 
     const startTime = Date.now();
     console.log(
@@ -73,6 +77,8 @@ export default function HomePage() {
       console.log(
         `[Frontend] Generation completed successfully in ${totalTime}ms`
       );
+      setProgress(100);
+      setStatus("Done!");
       setResult(data);
     } catch (err: any) {
       const totalTime = Date.now() - startTime;
@@ -91,6 +97,40 @@ export default function HomePage() {
       setLoading(false);
     }
   };
+
+  // Simulated staged progress while waiting for the server
+  useEffect(() => {
+    if (!loading) return;
+
+    let isCancelled = false;
+    const start = Date.now();
+
+    const updateStatusFor = (p: number) => {
+      if (p < 15) setStatus("Screening your idea for safety...");
+      else if (p < 45) setStatus("Designing your store layout...");
+      else if (p < 65) setStatus("Generating product photos...");
+      else if (p < 85) setStatus("Setting up products and pricing...");
+      else if (p < 100) setStatus("Polishing and publishing...");
+      else setStatus("Done!");
+    };
+
+    // Eases to ~99% over ~14s, then waits for real completion
+    const interval = setInterval(() => {
+      if (isCancelled) return;
+      const elapsed = Date.now() - start;
+      const target = Math.min(99, Math.floor((elapsed / 28000) * 100));
+      setProgress((prev) => {
+        const next = Math.max(prev, target);
+        updateStatusFor(next);
+        return next;
+      });
+    }, 150);
+
+    return () => {
+      isCancelled = true;
+      clearInterval(interval);
+    };
+  }, [loading]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
@@ -141,7 +181,7 @@ export default function HomePage() {
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Generating Store...
+                    Generating...
                   </>
                 ) : (
                   <>
@@ -150,6 +190,41 @@ export default function HomePage() {
                   </>
                 )}
               </Button>
+
+              {loading && (
+                <div className="mt-3 p-4 rounded-lg border bg-white/70 backdrop-blur">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center text-sm text-gray-700">
+                      <Sparkles className="w-4 h-4 mr-2 text-purple-600 animate-pulse" />
+                      <span>{status}</span>
+                    </div>
+                    <span className="text-xs text-gray-500">{progress}%</span>
+                  </div>
+                  <div className="h-3 w-full rounded-full bg-gray-200 overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 transition-all duration-300"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <div className="mt-3 flex items-center justify-center gap-3 text-gray-500">
+                    <Zap
+                      className="w-4 h-4 animate-bounce"
+                      style={{ animationDelay: "0ms" }}
+                    />
+                    <Store
+                      className="w-4 h-4 animate-bounce"
+                      style={{ animationDelay: "120ms" }}
+                    />
+                    <Sparkles
+                      className="w-4 h-4 animate-bounce"
+                      style={{ animationDelay: "240ms" }}
+                    />
+                  </div>
+                  <p className="mt-2 text-xs text-center text-gray-500">
+                    This usually takes 10–30 seconds.
+                  </p>
+                </div>
+              )}
 
               {error && (
                 <div className="text-center p-4 bg-red-50 border border-red-200 rounded-lg">

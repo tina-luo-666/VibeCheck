@@ -39,7 +39,7 @@ export async function createCheckoutSession(
       },
     ],
     mode: "payment",
-    success_url: `${env.NEXT_PUBLIC_SITE_URL}/s/${product.stores.slug}?success=true`,
+    success_url: `${env.NEXT_PUBLIC_SITE_URL}/success?store=${product.stores.slug}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${env.NEXT_PUBLIC_SITE_URL}/s/${product.stores.slug}?canceled=true`,
     metadata: {
       productId,
