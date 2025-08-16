@@ -114,11 +114,11 @@ export default function HomePage() {
       else setStatus("Done!");
     };
 
-    // Eases to ~99% over ~14s, then waits for real completion
+    // Eases to ~99% over ~60s, then waits for real completion
     const interval = setInterval(() => {
       if (isCancelled) return;
       const elapsed = Date.now() - start;
-      const target = Math.min(99, Math.floor((elapsed / 28000) * 100));
+      const target = Math.min(99, Math.floor((elapsed / 60000) * 100));
       setProgress((prev) => {
         const next = Math.max(prev, target);
         updateStatusFor(next);
